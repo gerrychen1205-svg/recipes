@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FBF8F3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#171614" media="(prefers-color-scheme: dark)">
+<title>老爸厨房 · 家常菜谱</title>
+<meta name="description" content="老爸的家常菜谱本，一道一道慢慢添。">
+<style>
+  :root {
+    --bg: #FBF8F3;
+    --card: #FFFFFF;
+    --text: #2A2723;
+    --muted: #7C736A;
+    --line: #E8E1D7;
+    --accent: #B4552D;
+    --accent-soft: #FDF0E8;
+    --shadow: 0 1px 2px rgba(42, 39, 35, .04);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #171614;
+      --card: #211F1D;
+      --text: #F0EBE4;
+      --muted: #A39A90;
+      --line: #332F2B;
+      --accent: #E39A6E;
+      --accent-soft: #2A211C;
+      --shadow: none;
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    font-size: 17px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 28px 20px calc(56px + env(safe-area-inset-bottom));
+  }
+
+  .hero { margin-bottom: 32px; }
+
+  .eyebrow {
+    font-size: 13px;
+    letter-spacing: .08em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: 34px;
+    line-height: 1.25;
+    font-weight: 600;
+    margin: 0 0 12px;
+    letter-spacing: -.01em;
+  }
+
+  .lead {
+    font-size: 15px;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .rule {
+    height: 1px;
+    background: var(--line);
+    border: 0;
+    margin: 28px 0;
+  }
+
+  .dish {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 22px 20px 6px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+  }
+
+  .dish-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+
+  .dish h2 {
+    font-size: 23px;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -.01em;
+  }
+
+  .alias {
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-radius: 999px;
+    padding: 2px 10px;
+    white-space: nowrap;
+  }
+
+  .desc {
+    font-size: 15px;
+    color: var(--muted);
+    margin: 0 0 14px;
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+
+  .chip {
+    font-size: 13px;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3px 12px;
+    white-space: nowrap;
+  }
+
+  details { border-top: 1px solid var(--line); margin-top: 16px; }
+
+  summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 16px 0 14px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    -webkit-tap-highlight-color: transparent;
+  }
+  summary::-webkit-details-marker { display: none; }
+
+  summary::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg);
+    margin-left: 12px;
+    transition: transform .18s ease;
+    flex-shrink: 0;
+  }
+  details[open] summary::after { transform: rotate(-135deg); }
+
+  .section-title {
+    font-size: 13px;
+    letter-spacing: .06em;
+    color: var(--muted);
+    margin: 24px 0 12px;
+    font-weight: 500;
+  }
+
+  .ingredients {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 15px;
+  }
+
+  .ingredients tr { border-bottom: 1px solid var(--line); }
+  .ingredients tr:last-child { border-bottom: 0; }
+
+  .ingredients td {
+    padding: 9px 0;
+    vertical-align: top;
+  }
+
+  .ingredients td:first-child {
+    width: 42%;
+    font-weight: 500;
+    padding-right: 12px;
+  }
+
+  .ingredients td:last-child { color: var(--muted); }
+
+  ol.steps {
+    list-style: none;
+    counter-reset: step;
+    padding: 0;
+    margin: 0;
+  }
+
+  ol.steps > li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 44px;
+    margin-bottom: 22px;
+  }
+
+  ol.steps > li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 1px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step-name {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+    font-size: 17px;
+  }
+
+  .steps p { margin: 0 0 8px; }
+  .steps p:last-child { margin-bottom: 0; }
+
+  .tag-a, .tag-b {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 4px;
+    padding: 1px 7px;
+    margin-right: 6px;
+    vertical-align: 1px;
+  }
+  .tag-a { background: var(--accent-soft); color: var(--accent); }
+  .tag-b { background: var(--line); color: var(--muted); }
+
+  .tips {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .tips li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 12px;
+    font-size: 16px;
+  }
+
+  .tips li::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 11px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .tips li:last-child { margin-bottom: 0; }
+
+  strong { font-weight: 600; }
+
+  .honest {
+    font-size: 13px;
+    color: var(--muted);
+    background: var(--accent-soft);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin: 24px 0 20px;
+    line-height: 1.7;
+  }
+
+  .footer {
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.9;
+  }
+
+  .footer a { color: var(--accent); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  .empty {
+    border: 1px dashed var(--line);
+    border-radius: 16px;
+    padding: 28px 20px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 15px;
+  }
+
+  @media (min-width: 620px) {
+    .wrap { padding: 44px 24px 72px; }
+    h1 { font-size: 40px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">家常菜谱 · 随手翻</div>
+    <h1>老爸厨房</h1>
+    <p class="lead">这里记着我想再做一次的菜。一道一道，慢慢添。</p>
+  </header>
+
+  <article class="dish">
+    <div class="dish-head">
+      <h2>泥猛鱼汤</h2>
+      <span class="alias">臭肚鱼</span>
+    </div>
+    <p class="desc">汤汁鲜甜，鱼肉嫩滑。海边人最家常的一锅，关键全在处理那两分钟。</p>
+    <div class="chips">
+      <span class="chip">潮汕家常</span>
+      <span class="chip">约 30 分钟</span>
+      <span class="chip">2–3 人份</span>
+      <span class="chip">新手可做</span>
+    </div>
+
+    <details>
+      <summary>看做法</summary>
+
+      <div class="section-title">食材</div>
+      <table class="ingredients">
+        <tr><td>泥猛鱼</td><td>2–3 条（约 500g），让鱼贩杀好</td></tr>
+        <tr><td>姜</td><td>4–5 片，或切成姜丝</td></tr>
+        <tr><td>潮汕咸菜</td><td>一小把。没有就用番茄 1–2 个代替，变成番茄鱼汤</td></tr>
+        <tr><td>芹菜</td><td>2 根，切「芹菜珠」——这是灵魂</td></tr>
+        <tr><td>香菜</td><td>少许，可选</td></tr>
+        <tr><td>五花肉薄片</td><td>几片，可选，潮汕家常会放，增香</td></tr>
+        <tr><td>开水</td><td>约 1 大碗</td></tr>
+        <tr><td>盐</td><td>适量</td></tr>
+        <tr><td>白胡椒粉</td><td>少许，提鲜去腥</td></tr>
+      </table>
+
+      <div class="section-title">做法</div>
+      <ol class="steps">
+        <li>
+          <span class="step-name">处理鱼（最关键）</span>
+          <p>去鳞、去鳃、去内脏。</p>
+          <p><strong>肚子里的黑膜和苦胆一定刮干净</strong>，不然汤会发苦。这步多花两分钟，值得。</p>
+          <p>鱼籽留着，很好吃。冲洗后沥干。</p>
+        </li>
+        <li>
+          <span class="step-name">煎鱼（两种流派任选）</span>
+          <p><span class="tag-a">流派 A</span>热锅少油，下姜片爆香，鱼两面各煎一下，别煎碎。汤更白更浓。</p>
+          <p><span class="tag-b">流派 B</span>不煎，鱼和姜直接下水煮。汤色清、味更甜。</p>
+          <p>新手建议走 A，不容易翻车。</p>
+        </li>
+        <li>
+          <span class="step-name">煮汤</span>
+          <p>鱼煎好后<strong>立刻加开水</strong>，大火滚。开水煮汤才白。</p>
+          <p>放咸菜（或番茄块）。有五花肉也这会儿下。</p>
+          <p>大火煮 5–8 分钟，汤变奶白就好。<strong>别久煮，肉会散。</strong></p>
+        </li>
+        <li>
+          <span class="step-name">调味出锅</span>
+          <p>加盐、白胡椒粉。</p>
+          <p>撒芹菜珠（和香菜），关火。</p>
+          <p>趁热上桌。配一碟普宁豆酱蘸鱼，是潮汕标配。</p>
+        </li>
+      </ol>
+
+      <div class="section-title">几个容易翻车的地方</div>
+      <ul class="tips">
+        <li><strong>苦胆黑膜不干净，整锅苦。</strong>这是泥猛鱼最容易失手的地方。</li>
+        <li>用<strong>开水</strong>煮，汤才白；冷水下去汤色偏清。</li>
+        <li>煮的时间<strong>宁短勿长</strong>，鱼肉一散就不好吃了。</li>
+        <li>芹菜珠别用大葱代替，味道差很远。</li>
+        <li>这鱼名字带「臭」，是肚里那股腥味的关系；处理干净了反而特别鲜。</li>
+      </ul>
+
+      <div class="honest">
+        说明一句：这版是潮汕／闽南做这鱼的正宗通用做法，不是某条视频的精确步骤。想对着一帧一帧学，把视频存下来发我，我拆给你看。
+      </div>
+    </details>
+  </article>
+
+  <div class="empty">
+    下一道菜，等你想学的时候再加。
+  </div>
+
+  <footer class="footer">
+    小馨整理 · 2026 年 10 月<br>
+    做法参考潮汕／闽南家常鱼汤的通行方法<br>
+    仅作自家做菜参考，不做商用
+  </footer>
+
+</div>
+</body>
+</html>
