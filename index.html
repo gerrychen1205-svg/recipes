@@ -137,6 +137,22 @@
     line-height: 1.6;
   }
 
+  .step-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    margin: 12px 0 2px;
+    background: var(--line);
+  }
+
+  .step-photo-note {
+    font-size: 11px;
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+
   .chips {
     display: flex;
     flex-wrap: wrap;
@@ -361,6 +377,9 @@
       <h2>泥猛鱼汤</h2>
       <span class="alias">臭肚鱼</span>
     </div>
+    <img class="dish-photo" src="images/fish-soup.jpg" width="1200" height="722" loading="lazy"
+         alt="泥猛鱼汤：整条鱼卧在奶白色汤里，撒了芹菜珠，配咸菜和姜片">
+    <p class="photo-note">配图为示意，不是实拍。等你煮了拍一张真的，我换上去。</p>
     <p class="desc">汤汁鲜甜，鱼肉嫩滑。海边人最家常的一锅，关键全在处理那两分钟。</p>
     <div class="chips">
       <span class="chip">潮汕家常</span>
@@ -392,24 +411,36 @@
           <p>去鳞、去鳃、去内脏。</p>
           <p><strong>肚子里的黑膜和苦胆一定刮干净</strong>，不然汤会发苦。这步多花两分钟，值得。</p>
           <p>鱼籽留着，很好吃。冲洗后沥干。</p>
+          <img class="step-photo" src="images/fish-step1.jpg" width="900" height="541" loading="lazy"
+               alt="在砧板上清洗整条鱼，旁边放着姜片">
+          <p class="step-photo-note">第 1 步：洗鱼、去鳞去内脏。肚子那层黑膜要多刮两下。</p>
         </li>
         <li>
           <span class="step-name">煎鱼（两种流派任选）</span>
           <p><span class="tag-a">流派 A</span>热锅少油，下姜片爆香，鱼两面各煎一下，别煎碎。汤更白更浓。</p>
           <p><span class="tag-b">流派 B</span>不煎，鱼和姜直接下水煮。汤色清、味更甜。</p>
           <p>新手建议走 A，不容易翻车。</p>
+          <img class="step-photo" src="images/fish-step2.jpg" width="900" height="541" loading="lazy"
+               alt="铁锅里姜片爆香，整条鱼煎到两面微黄">
+          <p class="step-photo-note">第 2 步：姜片爆香，鱼两面各煎一下。别急着翻，等它自己脱锅。</p>
         </li>
         <li>
           <span class="step-name">煮汤</span>
           <p>鱼煎好后<strong>立刻加开水</strong>，大火滚。开水煮汤才白。</p>
           <p>放咸菜（或番茄块）。有五花肉也这会儿下。</p>
           <p>大火煮 5–8 分钟，汤变奶白就好。<strong>别久煮，肉会散。</strong></p>
+          <img class="step-photo" src="images/fish-step3.jpg" width="900" height="541" loading="lazy"
+               alt="奶白色的鱼汤在大火翻滚，正在下咸菜">
+          <p class="step-photo-note">第 3 步：加开水，大火滚。看这汤色——白得像牛奶就对了。</p>
         </li>
         <li>
           <span class="step-name">调味出锅</span>
           <p>加盐、白胡椒粉。</p>
           <p>撒芹菜珠（和香菜），关火。</p>
           <p>趁热上桌。配一碟普宁豆酱蘸鱼，是潮汕标配。</p>
+          <img class="step-photo" src="images/fish-step4.jpg" width="900" height="541" loading="lazy"
+               alt="俯拍出锅的鱼汤，白汤上铺满芹菜珠，旁边摆着筷子">
+          <p class="step-photo-note">第 4 步：撒芹菜珠，关火。这一把是潮汕鱼汤的魂，别省。</p>
         </li>
       </ol>
 
